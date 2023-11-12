@@ -32,7 +32,7 @@ type h264QSVSettings struct {
 	AdditionalOptions string
 }
 
-func (s *h264QSVSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *h264QSVSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret, err = qsvCommon(s.RateControl, s.Bitrate, s.Quality)
 	if err != nil {
 		return nil, err
@@ -60,7 +60,7 @@ type hevcQSVSettings struct {
 	AdditionalOptions string
 }
 
-func (s *hevcQSVSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *hevcQSVSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret, err = qsvCommon(s.RateControl, s.Bitrate, s.Quality)
 	if err != nil {
 		return nil, err

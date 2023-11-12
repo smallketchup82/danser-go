@@ -60,7 +60,7 @@ func startAudio(audioFPS float64) {
 
 	options = append(options, "-c:a", settings.Recording.AudioCodec, "-strict", "-2")
 
-	encOptions, err := settings.Recording.GetAudioOptions().GenerateFFmpegArgs()
+	encOptions, err := settings.Recording.GetAudioOptions().GenerateFFmpegArgs(0)
 	if err != nil {
 		panic(fmt.Sprintf("encoder \"%s\": %s", settings.Recording.AudioCodec, err))
 	} else if encOptions != nil {

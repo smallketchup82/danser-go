@@ -92,7 +92,7 @@ func createPBO(format pixconv.PixFmt) *PBO {
 
 var rgbToYuvConverter *effects.RGBYUV
 
-func startVideo(fps, _w, _h int) {
+func startVideo(fps, _w, _h int, length float64) {
 	w, h = _w, _h
 
 	if settings.Recording.MotionBlur.Enabled {
@@ -168,7 +168,7 @@ func startVideo(fps, _w, _h int) {
 		options = append(options, "-pix_fmt", outputFormat)
 	}
 
-	encOptions, err := settings.Recording.GetEncoderOptions().GenerateFFmpegArgs()
+	encOptions, err := settings.Recording.GetEncoderOptions().GenerateFFmpegArgs(length)
 	if err != nil {
 		panic(fmt.Sprintf("encoder \"%s\": %s", encoder, err))
 	} else if encOptions != nil {

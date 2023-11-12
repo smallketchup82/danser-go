@@ -73,7 +73,7 @@ func preCheck() {
 	}
 }
 
-func StartFFmpeg(fps, _w, _h int, audioFPS float64, _output string) {
+func StartFFmpeg(fps, _w, _h int, audioFPS float64, _output string, length float64) {
 	preCheck()
 
 	if strings.TrimSpace(_output) == "" {
@@ -91,15 +91,15 @@ func StartFFmpeg(fps, _w, _h int, audioFPS float64, _output string) {
 		panic(err)
 	}
 
-	startVideo(fps, _w, _h)
 	startAudio(audioFPS)
+	startVideo(fps, _w, _h, length)
 }
 
 func StopFFmpeg() {
 	log.Println("Finishing rendering...")
 
-	stopVideo()
 	stopAudio()
+	stopVideo()
 
 	log.Println("Ffmpeg finished.")
 

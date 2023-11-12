@@ -198,14 +198,14 @@ type blendWeights struct {
 }
 
 type EncoderOptions interface {
-	GenerateFFmpegArgs() ([]string, error)
+	GenerateFFmpegArgs(length float64) ([]string, error)
 }
 
 type custom struct {
 	CustomOptions string
 }
 
-func (s *custom) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *custom) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret = parseCustomOptions(ret, s.CustomOptions)
 
 	return

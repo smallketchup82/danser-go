@@ -35,7 +35,7 @@ type h264NvencSettings struct {
 	AdditionalOptions string
 }
 
-func (s *h264NvencSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *h264NvencSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret, err = nvencCommon(s.RateControl, s.Bitrate, s.CQ)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ type hevcNvencSettings struct {
 	AdditionalOptions string
 }
 
-func (s *hevcNvencSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *hevcNvencSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret, err = nvencCommon(s.RateControl, s.Bitrate, s.CQ)
 	if err != nil {
 		return nil, err

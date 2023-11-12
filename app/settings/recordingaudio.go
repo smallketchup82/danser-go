@@ -6,13 +6,17 @@ import (
 	"strings"
 )
 
+var AudioBitrate string
+
 type aacSettings struct {
 	Bitrate           string `combo:"8k,16k,32k,64k,96k,128k,160k,192k,224k,256k,288k,320k"`
 	AdditionalOptions string
 }
 
-func (s *aacSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *aacSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	ret = append(ret, "-b:a", s.Bitrate)
+
+	AudioBitrate = s.Bitrate
 
 	ret = parseCustomOptions(ret, s.AdditionalOptions)
 
@@ -25,7 +29,7 @@ type mp3Settings struct {
 	AdditionalOptions string
 }
 
-func (s *mp3Settings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *mp3Settings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	switch strings.ToLower(s.RateControl) {
 	case "cbr":
 		break
@@ -48,7 +52,7 @@ type opusSettings struct {
 	AdditionalOptions string
 }
 
-func (s *opusSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *opusSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	switch strings.ToLower(s.RateControl) {
 	case "vbr":
 		break
@@ -70,7 +74,7 @@ type flacSettings struct {
 	AdditionalOptions string
 }
 
-func (s *flacSettings) GenerateFFmpegArgs() (ret []string, err error) {
+func (s *flacSettings) GenerateFFmpegArgs(length float64) (ret []string, err error) {
 	if s.CompressionLevel < 0 || s.CompressionLevel > 12 {
 		return nil, fmt.Errorf("CompressionLevel out of range [0-12]")
 	}

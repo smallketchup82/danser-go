@@ -76,6 +76,7 @@ var screenshotTime float64
 var preciseProgress bool
 
 var monitorHz int
+var length float64
 
 func run() {
 	defer func() {
@@ -318,6 +319,8 @@ func run() {
 			database.Close()
 		}
 
+		length = float64(beatMap.Length)
+
 		assets.Init(build.Stream == "Dev")
 
 		if !closeAfterSettingsLoad {
@@ -537,7 +540,7 @@ func mainLoopRecord() {
 		fbo = buffer.NewFrameMultisampleScreen(w, h, false, 0)
 	})
 
-	ffmpeg.StartFFmpeg(int(fps), w, h, audioFPS, output)
+	ffmpeg.StartFFmpeg(int(fps), w, h, audioFPS, output, length)
 
 	updateFPS := max(fps, 1000)
 	updateDelta := 1000 / updateFPS
