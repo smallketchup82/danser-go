@@ -23,6 +23,21 @@ As danser is in development phase, some things may break. If that happens please
 * [osu! top 50 knockout | YURRY CANNON - Suicide Parade [Sakase]](https://youtu.be/GS_yoq5MJMU)
 * [osu! top 50 replays knockout | Kobaryo - Bookmaker [Corrupt The World]](https://youtu.be/SJqkP1IDUq0)
 
+## Target Size (Two-pass) Information
+This fork implements two-pass encoding in Danser. This means that you can specify a target size in megabytes, and the program will try to achieve that file size.
+
+To get access to this option:
+1. Open danser (the one which you downloaded from the releases page)
+2. Scroll down to the recording settings
+3. Set rate control to CBR
+4. Enter a target file size in MB. The program tries to hit it exactly, but has a tendency to overshoot. So I recommend subtracting 1MB from your target size to account for the overshooting.
+
+Notes:
+- Target Size works best when you want to prioritize file size over quality. If you want quality, use CRF.
+- For low file sizes, such as 25mb, its best that you use the following settings:
+  - 720p
+  - 192k audio bitrate
+- I wouldn't recommend doing 1080p with this since the benefits from using two-pass over CRF are more minimal, but if you are going to use two-pass with 1080p, make sure you set the file size to something relatively high, like 50mb.
 ## Running Danser
 
 You can download the newest Windows/Linux 64-bit binaries from [releases](https://github.com/Wieku/danser-go/releases).
