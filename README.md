@@ -17,6 +17,8 @@ As danser is in development phase, some things may break. If that happens please
 ## Fork Information
 When using releases from this fork, I would recommend you turn off the "check for updates" option in launcher settings, since that tracks the main repository, not my fork.
 
+Download from https://github.com/smallketchup82/danser-go/releases/latest
+
 ## Target Size (Two-pass) Information
 This fork implements two-pass encoding in Danser. This means that you can specify a target size in megabytes, and the program will try to achieve that file size.
 
